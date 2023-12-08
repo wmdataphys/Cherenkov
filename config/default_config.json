@@ -1,0 +1,49 @@
+{
+    "name": "deepDIRC_Test1_Conv_cVAE",
+    "seed":8,
+    "classification":1,
+    "model": {
+       "blocks": [64,128,512,1024,512,128,64,3],
+       "latent_dim":16,
+       "dropout_setval": 0.0
+    },
+    "dataset": {
+        "root_dir" : "/sciclone/data10/jgiroux/Cherenkov",
+        "rho_filename":"/sciclone/data10/jgiroux/Cherenkov/Rho_Events_Oct2_2023.pkl",
+        "phi_filename":"/sciclone/data10/jgiroux/Cherenkov/Phi_Events_Oct2_2023.pkl",
+        "stats": {
+            "cond_maxes": [4.23066000e+05, 1.41623150e+01, 1.75473206e+02, 1.09475594e+02,1.02406105e+02],
+            "cond_mins": [0.230376,    0.905316, -175.692947, -105.754074, -102.386444]
+        }
+    },
+    "lr_scheduler": {
+        "step_size": 30,
+        "gamma": 0.1
+    },
+    "optimizer": {
+        "lr": 1e-3,
+        "huber_delta":0.0675,
+        "huber_scale":100.0,
+        "NLL_weight":0.784,
+        "CE_weight":1.403,
+        "MMD_weight":1.009,
+        "var_MMD":0.646
+    },
+    "num_epochs":250,
+    "dataloader": {
+        "mode":"random",
+        "split":[0.7,0.15,0.15],
+        "train": {
+            "batch_size": 64
+    	},
+        "val": {
+            "batch_size": 64
+        },
+        "test": {
+            "batch_size": 1
+        }
+    },
+    "output": {
+	"dir": "/sciclone/data10/jgiroux/Cherenkov/Trained_Models"
+    }
+}
